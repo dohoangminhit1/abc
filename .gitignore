@@ -1,1 +1,17 @@
 /venv
+.env
+*.env
+.env.*
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+.pytest_cache/
+.coverage
+htmlcov/
+.DS_Store
+*.log
+node_modules/
+dist/
+.idea/
+.vscode/
