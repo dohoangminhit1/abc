@@ -1,0 +1,129 @@
+/* General Styling */
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, "Helvetica Neue", Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0);
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.container {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    width: 350px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+.underline {
+    width: 50px;
+    height: 4px;
+    background: black;
+    margin: 0 auto 20px auto;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    background: #f9f9f9;
+}
+
+.input img {
+    width: 20px;
+    margin-right: 10px;
+}
+
+.input input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 14px;
+}
+
+.submit-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.login-button {
+    width: 70px;
+    height: 70px;
+    border: none;
+    border-radius: 25%;
+    background: lightgray;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.login-button svg {
+    width: 50px;
+    height: 50px;
+    stroke: gray; /* Arrow color */
+    stroke-width: 5;
+    fill: none;
+    transition: stroke 0.3s ease;
+}
+
+.login-button:hover {
+    background: rgb(210, 26, 5);
+    border-color: rgb(235, 153, 1);
+}
+
+.login-button:hover svg {
+    stroke: white;
+}
+
+.signup-button {
+    margin-top: 10px;
+}
+
+/* Icons */
+.icon {
+    width: 24px;
+    height: 24px;
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(0);
+    }
+    70% {
+        transform: scale(1.8);
+    }
+    80% {
+        transform: scale(0.6);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
