@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, status
-from pydantic import BaseModel, EmailStr, Field
+from pydantic import BaseModel, Field
 from pymongo import ReturnDocument
-from pymongo.errors import PyMongoError, DuplicateKeyError, ServerSelectionTimeoutError
+from pymongo.errors import PyMongoError, ServerSelectionTimeoutError
 from app.database import collection
 from app.auth import pwd_context
 from app.serializer import convert_doc, convert_doc_list
@@ -25,15 +25,13 @@ class Item(BaseModel):
         }
 
 class LoginCredentials(BaseModel):
-    email: EmailStr
     username: str = Field(..., min_length=3, max_length=50)
     password: str = Field(..., min_length=6)
 
     class Config:
         json_schema_extra = {
             "example": {
-                "email": "user@example.com",
-                "username": "johndoe",
+                "username": "sena",
                 "password": "strongpassword123"
             }
         }
@@ -101,7 +99,7 @@ async def delete_item(name: str):
         )
 
 # Authentication routes
-@router.post("/register", status_code=status.HTTP_201_CREATED)
+@router.post("/api/register", status_code=status.HTTP_201_CREATED)
 async def register(credentials: LoginCredentials):
     try:
         if await collection.find_one({"username": credentials.username}):
@@ -109,16 +107,10 @@ async def register(credentials: LoginCredentials):
                 status_code=status.HTTP_400_BAD_REQUEST,
                 detail="Username already exists"
             )
-        if await collection.find_one({"email": credentials.email}):
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail="Email already registered"
-            )
         
         hashed_password = pwd_context.hash(credentials.password)
         user_doc = {
             "username": credentials.username,
-            "email": credentials.email,
             "password": hashed_password,
         }
         await collection.insert_one(user_doc)
@@ -132,7 +124,7 @@ async def register(credentials: LoginCredentials):
             detail="Database connection error"
         )
 
-@router.post("/login")
+@router.post("/api/login")
 async def login(credentials: LoginCredentials):
     try:
         user = await collection.find_one({"username": credentials.username})
@@ -143,8 +135,7 @@ async def login(credentials: LoginCredentials):
             )
         return {
             "message": "Login successful",
-            "username": user["username"],
-            "email": user["email"]
+            "username": user["username"]
         }
     except ServerSelectionTimeoutError:
         raise HTTPException(
