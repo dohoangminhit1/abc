@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, status, Depends
 from pymongo import ReturnDocument
 from pymongo.errors import PyMongoError, ServerSelectionTimeoutError
-from app.database import get_collection
+from app.database import get_tuoi_collection
 from app.models.item import Item
 from app.serializer import convert_doc, convert_doc_list
 from typing import List
@@ -9,9 +9,9 @@ from typing import List
 router = APIRouter()
 
 @router.post("/", status_code=status.HTTP_201_CREATED)
-async def create_item(item: Item, collection=Depends(get_collection)):
+async def create_item(item: Item, collection=Depends(get_tuoi_collection)):
     try:
-        await collection.insert_one(item.dict())
+        await collection.insert_one(item.model_dump())
         return {"message": "Item created", "item": item}
     except PyMongoError:
         raise HTTPException(
@@ -20,7 +20,7 @@ async def create_item(item: Item, collection=Depends(get_collection)):
         )
 
 @router.get("/", response_model=List[Item])
-async def read_items(collection=Depends(get_collection)):
+async def read_items(collection=Depends(get_tuoi_collection)):
     try:
         items = await collection.find().to_list(length=100)
         return convert_doc_list(items)
@@ -31,11 +31,11 @@ async def read_items(collection=Depends(get_collection)):
         )
 
 @router.put("/{name}")
-async def update_item(name: str, item: Item, collection=Depends(get_collection)):
+async def update_item(name: str, item: Item, collection=Depends(get_tuoi_collection)):
     try:
         updated_item = await collection.find_one_and_update(
             {"name": name},
-            {"$set": item.dict()},
+            {"$set": item.model_dump()},
             return_document=ReturnDocument.AFTER
         )
         if updated_item:
@@ -51,7 +51,7 @@ async def update_item(name: str, item: Item, collection=Depends(get_collection))
         )
 
 @router.delete("/{name}")
-async def delete_item(name: str, collection=Depends(get_collection)):
+async def delete_item(name: str, collection=Depends(get_tuoi_collection)):
     try:
         deleted_item = await collection.delete_one({"name": name})
         if deleted_item.deleted_count:

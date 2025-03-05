@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import './Login.css'
 import password_icon from '../assets/icons/password.png'
 import user_icon from '../assets/icons/username.png'
-import api from '../services/api';
+import axios_instance from '../services/api';
 
 const Login = () => {
     const [username, setUsername] = useState('');
@@ -13,7 +13,7 @@ const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const response = await api.post('/login', {
+            const response = await axios_instance.post('/login', {
                 username,
                 password
             });

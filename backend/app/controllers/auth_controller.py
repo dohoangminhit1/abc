@@ -1,13 +1,13 @@
 from fastapi import APIRouter, HTTPException, status, Depends
 from pymongo.errors import ServerSelectionTimeoutError
-from app.database import get_collection
+from app.database import get_shopacc_collection
 from app.models.user import LoginCredentials
 from app.auth import pwd_context
 
 router = APIRouter()
 
 @router.post("/register", status_code=status.HTTP_201_CREATED)
-async def register(credentials: LoginCredentials, collection=Depends(get_collection)):
+async def register(credentials: LoginCredentials, collection=Depends(get_shopacc_collection)):
     try:
         if await collection.find_one({"username": credentials.username}):
             raise HTTPException(
@@ -29,7 +29,7 @@ async def register(credentials: LoginCredentials, collection=Depends(get_collect
         )
 
 @router.post("/login")
-async def login(credentials: LoginCredentials, collection=Depends(get_collection)):
+async def login(credentials: LoginCredentials, collection=Depends(get_shopacc_collection)):
     try:
         user = await collection.find_one({"username": credentials.username})
         if not user or not pwd_context.verify(credentials.password, user["password"]):
