@@ -1,7 +1,6 @@
-# filepath: /home/minh/codeproject/abc/backend/app/__init__.py
 from fastapi import FastAPI
-from app.routes import router
 from fastapi.middleware.cors import CORSMiddleware
+from app.routes import router as api_router
 
 # Create FastAPI application with metadata
 app = FastAPI(
@@ -34,9 +33,5 @@ def read_root():
         "message": "API is running"
     }
 
-# Include router with /api prefix and tags
-app.include_router(
-    router,
-    prefix="",
-    tags=["accounts operations"]
-)
+# Include routers with appropriate prefixes and tags
+app.include_router(api_router)
