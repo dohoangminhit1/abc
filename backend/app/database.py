@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()  # Load environment variables from .env
 
-MONGO_URI = os.getenv("MONGO_URI", "mongodb+srv://minh:minh@cbd.zumeo.mongodb.net/?retryWrites=true&w=majority&appName=cbd")
+MONGO_URI = os.getenv("MONGO_URI")
 
 client = AsyncIOMotorClient(MONGO_URI)
 
