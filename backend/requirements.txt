@@ -1,0 +1,19 @@
+# FastAPI framework with all optional dependencies
+fastapi[all]
+
+# ASGI server to run FastAPI
+uvicorn
+
+# Database drivers for MongoDB
+motor
+pymongo
+
+# Secure password hashing
+passlib[bcrypt]
+
+# Data validation and serialization
+pydantic[all]
+
+# JWT authentication (optional, but recommended for secure login)
+pyjwt
+python-dotenv

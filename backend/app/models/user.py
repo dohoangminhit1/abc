@@ -21,7 +21,7 @@ class Item(BaseModel):
         json_schema_extra = {
             "example": {
                 "name": "Truong Tuan Tu",
-                "age": 29,
+                "age": 30,
                 "que": "Hai Phong"
             }
         }
