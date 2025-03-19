@@ -1,9 +1,7 @@
 import axios from "axios";
 
-const API_URL = "http://127.0.0.1:8000/auth";
-
 const axios_instance = axios.create({
-  baseURL: API_URL,
+  baseURL: `${import.meta.env.VITE_API_URL}/auth`, // Use VITE_API_URL from .env
   headers: {
     "Content-Type": "application/json",
   },

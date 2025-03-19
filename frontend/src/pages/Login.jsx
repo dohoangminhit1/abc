@@ -13,14 +13,14 @@ const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios_instance.post('/login', {
+            const response = await axios_instance.post(`${import.meta.env.VITE_API_URL}/login`, {
                 username,
                 password
             });
             alert(response.data.message);
             navigate('/');
         } catch (error) {
-            alert(error.response.data.detail);
+            alert(error.response?.data?.detail || "An error occurred");
         }
     };
 

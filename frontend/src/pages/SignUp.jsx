@@ -18,14 +18,14 @@ const SignUp = () => {
             return;
         }
         try {
-            const response = await axios_instance.post('/register', {
+            const response = await axios_instance.post(`${import.meta.env.VITE_API_URL}/register`, {
                 username,
                 password
             });
             alert(response.data.message);
             navigate('/login');
         } catch (error) {
-            alert(error.response.data.detail);
+            alert(error.response?.data?.detail || "An error occurred");
         }
     };
 

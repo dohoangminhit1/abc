@@ -1,4 +1,3 @@
-// filepath: /home/minh/codeproject/abc/frontend/vite.config.js
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
@@ -9,8 +8,11 @@ export default defineConfig({
       '/api': {
         target: 'http://127.0.0.1:8000',
         changeOrigin: true,
-        // Remove the rewrite rule
-        // rewrite: (path) => path.replace(/^\/api/, ''),
+        secure: false,
+      },
+      '/auth': {
+        target: 'http://127.0.0.1:8000', // Backend URL
+        changeOrigin: true,
         secure: false,
       },
     },

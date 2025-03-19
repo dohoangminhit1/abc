@@ -12,7 +12,10 @@ app = FastAPI(
     openapi_url="/openapi.json"
 )
 
-origins = ["http://localhost:5173"]
+origins = [
+    "http://localhost:5173",  # Local development
+    "https://abc-at61.onrender.com"  # Deployed frontend
+]
 
 app.add_middleware(
     CORSMiddleware,
