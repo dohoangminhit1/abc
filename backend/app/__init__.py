@@ -15,7 +15,9 @@ app = FastAPI(
 origins = [
     "http://localhost:5173",  
     "https://abc-at61.onrender.com",  
-    "https://www.abc-at61.onrender.com"  # Add this just in case
+    "https://www.abc-at61.onrender.com",
+    "https://abc-uwkq.onrender.com",
+    "https://www.abc-uwkq.onrender.com" 
 ]
 
 app.add_middleware(
