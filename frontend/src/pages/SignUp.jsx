@@ -5,6 +5,10 @@ import password_icon from '../assets/icons/password.png'
 import user_icon from '../assets/icons/username.png'
 import axios_instance from '../services/api';
 
+const API_URL = import.meta.env.MODE === 'development' 
+    ? import.meta.env.VITE_API_URL_LOCAL 
+    : import.meta.env.VITE_API_URL_PROD;
+
 const SignUp = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -18,7 +22,7 @@ const SignUp = () => {
             return;
         }
         try {
-            const response = await axios_instance.post(`${import.meta.env.VITE_API_URL}/register`, {
+            const response = await axios_instance.post(`${API_URL}/register`, {
                 username,
                 password
             });

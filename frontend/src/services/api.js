@@ -1,10 +1,14 @@
 import axios from "axios";
 
+export const API_URL = import.meta.env.MODE === 'development' 
+    ? import.meta.env.VITE_API_URL_LOCAL 
+    : import.meta.env.VITE_API_URL_PROD;
+
 const axios_instance = axios.create({
-  baseURL: `${import.meta.env.VITE_API_URL}/auth`, // Use VITE_API_URL from .env
-  headers: {
-    "Content-Type": "application/json",
-  },
+    baseURL: API_URL,
+    headers: {
+        "Content-Type": "application/json",
+    },
 });
 
 export default axios_instance;

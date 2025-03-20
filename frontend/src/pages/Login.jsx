@@ -3,17 +3,17 @@ import { Link, useNavigate } from "react-router-dom";
 import './Login.css'
 import password_icon from '../assets/icons/password.png'
 import user_icon from '../assets/icons/username.png'
-import axios_instance from '../services/api';
+import axios_instance, { API_URL } from '../services/api';
 
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
-
+    console.log(API_URL);
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios_instance.post(`${import.meta.env.VITE_API_URL}/login`, {
+            const response = await axios_instance.post(`/auth/login`, {
                 username,
                 password
             });

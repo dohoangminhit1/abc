@@ -13,8 +13,9 @@ app = FastAPI(
 )
 
 origins = [
-    "http://localhost:5173",  # Local development
-    "https://abc-at61.onrender.com"  # Deployed frontend
+    "http://localhost:5173",  
+    "https://abc-at61.onrender.com",  
+    "https://www.abc-at61.onrender.com"  # Add this just in case
 ]
 
 app.add_middleware(
