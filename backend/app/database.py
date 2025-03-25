@@ -14,5 +14,5 @@ database_tuoi = client["tuoi"]
 def get_shopacc_collection():
     return database_shopacc["shopacc"]
 
-def get_tuoi_collection():
-    return database_tuoi["tuoi"]
+def get_shopacc_tokens():
+    return database_shopacc["refresh_tokens"]

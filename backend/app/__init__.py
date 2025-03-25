@@ -31,9 +31,6 @@ app.add_middleware(
 # Root endpoint for API health check
 @app.get("/", tags=["health"])
 def read_root():
-    """
-    Root endpoint to check API health
-    """
     return {
         "status": "healthy",
         "message": "API is running"

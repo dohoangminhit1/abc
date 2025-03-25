@@ -17,3 +17,5 @@ pydantic[all]
 # JWT authentication (optional, but recommended for secure login)
 pyjwt
 python-dotenv
+python-multipart
+python-jose[cryptography]
