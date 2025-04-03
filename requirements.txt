@@ -19,3 +19,8 @@ pyjwt
 python-dotenv
 python-multipart
 python-jose[cryptography]
+
+apscheduler
+
+redis==5.0.1
+setuptools

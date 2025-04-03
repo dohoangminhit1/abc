@@ -9,18 +9,26 @@ const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
-    console.log(API_URL);
+    // console.log(API_URL);
+
     const handleLogin = async (e) => {
         e.preventDefault();
+        const params = new URLSearchParams();
+        params.append('username', username);
+        params.append('password', password);
         try {
-            const response = await axios_instance.post(`/auth/login`, {
-                username,
-                password
+            const response = await axios_instance.post(`/auth/login`, params, {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
             });
+
+            localStorage.setItem('access_token', response.data.access_token);
             alert(response.data.message);
-            navigate('/');
+            navigate('/hello');
         } catch (error) {
-            alert(error.response?.data?.detail || "An error occurred");
+            alert(error.response?.data?.detail || "An error occurred during login.");
+            console.error("Login error:", error.response || error.message || error);
         }
     };
 

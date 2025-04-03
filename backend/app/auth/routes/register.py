@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException, status, Depends
 from pymongo.errors import ServerSelectionTimeoutError
 from app.database import get_shopacc_collection
 from app.models.user import LoginCredentials
-from app.pwd_hash import pwd_context
+from app.auth.utils import pwd_context
 from app.auth.utils import create_access_token
 
 router = APIRouter()

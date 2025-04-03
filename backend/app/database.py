@@ -2,7 +2,7 @@ from motor.motor_asyncio import AsyncIOMotorClient
 import os
 from dotenv import load_dotenv
 
-load_dotenv()  # Load environment variables from .env
+load_dotenv()
 
 MONGO_URI = os.getenv("MONGO_URI")
 
@@ -16,3 +16,6 @@ def get_shopacc_collection():
 
 def get_shopacc_tokens():
     return database_shopacc["refresh_tokens"]
+
+def get_revoked_tokens_collection():
+    return database_shopacc["revoked_tokens"]

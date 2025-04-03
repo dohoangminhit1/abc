@@ -20,3 +20,8 @@ python-dotenv
 
 python-jose[cryptography]
 python-multipart
+
+apscheduler
+
+redis
+setuptools

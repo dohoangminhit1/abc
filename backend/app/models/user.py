@@ -8,10 +8,13 @@ class LoginCredentials(BaseModel):
     class Config:
         json_schema_extra = {
             "example": {
-                "username": "poweruser",
-                "password": "strongpassword123"
+                "username": "senahihi",
+                "password": "senahihi"
             }
         }
 
 class UserOut(BaseModel):
     username: str
+
+class LogoutRequest(BaseModel):
+    refresh_token: str
